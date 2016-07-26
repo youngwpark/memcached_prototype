@@ -12,40 +12,40 @@ public MyCacheApp(){}
     public static void main(String[] args) throws Exception
     {
         if(args.length < 2)
-	{
-            System.out.println("Please specify command line options");
-            return;
-        }
-
-        System.out.println("Starting to establish MemcachedClient Connection");
-        String commandArgument = null;
-        String keyArgument = null;
-        String valueArgument = null;
-        int numberOfArguments = args.length;
-        if (numberOfArguments > 0)
-        {
-            commandArgument = args[numberOfArguments - numberOfArguments];
-            System.out.println("commandArgument[" + commandArgument + "]");
-            if (numberOfArguments > 1)
-            {
-    	        keyArgument = args[numberOfArguments - (numberOfArguments - 1)];
-    	        System.out.println("keyArgument[" + keyArgument + "]");
-       	        if (numberOfArguments > 2)
-	        {
-	    	    valueArgument = args[numberOfArguments - (numberOfArguments -2)];
-                    System.out.println("valueArgument[" + valueArgument + "]");
+		{
+	            System.out.println("Please specify command line options");
+	            return;
 	        }
-  	    }
-        }
-   
- 	// Create Model 
-        MyCache cache = new MyCache();
-
-	// Create Controller
-	MyCacheController cacheController = new MyCacheController(cache);
-        cacheController.handleCommand(commandArgument, keyArgument, valueArgument);
-
-        //cache.shutdown();
+	
+	        System.out.println("Starting to establish MemcachedClient Connection");
+	        String commandArgument = null;
+	        String keyArgument = null;
+	        String valueArgument = null;
+	        int numberOfArguments = args.length;
+	        if (numberOfArguments > 0)
+	        {
+	            commandArgument = args[numberOfArguments - numberOfArguments];
+	            System.out.println("commandArgument[" + commandArgument + "]");
+	            if (numberOfArguments > 1)
+	            {
+	    	        keyArgument = args[numberOfArguments - (numberOfArguments - 1)];
+	    	        System.out.println("keyArgument[" + keyArgument + "]");
+	       	        if (numberOfArguments > 2)
+		        {
+		    	    valueArgument = args[numberOfArguments - (numberOfArguments -2)];
+	                    System.out.println("valueArgument[" + valueArgument + "]");
+		        }
+	  	    }
+	        }
+	   
+	 	// Create Model 
+	        MyCache cache = new MyCache();
+	
+		// Create Controller
+		MyCacheController cacheController = new MyCacheController(cache);
+	    cacheController.handleCommand(commandArgument, keyArgument, valueArgument);
+	
+	    //cache.shutdown();
     }
 
 /*

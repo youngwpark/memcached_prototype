@@ -10,9 +10,10 @@ import java.util.ArrayList;
 
 public class MyCacheController
 {
-    private static String memCachedAddress = "127.0.0.1:11211";
+    private static String MEM_CACHED_ADDRESS = "127.0.0.1:11211";
+    private static int DEFAULT_TIME_TO_LIVE = 0;
     private static boolean isLoggerEnabled = false;
-
+    
     //Model
     private MyCache cache = null;
 
@@ -21,7 +22,7 @@ public class MyCacheController
         MemcachedClient memCachedClient = null;
         try 
         {   
-            memCachedClient =  new MemcachedClient(AddrUtil.getAddresses(memCachedAddress));
+            memCachedClient =  new MemcachedClient(AddrUtil.getAddresses(MEM_CACHED_ADDRESS));
         }
         catch (IOException e)
         {   
@@ -69,13 +70,13 @@ public class MyCacheController
                     get(key);
                     break;
                 case SET:
-                    set(key, 0, value);
+                    set(key, value);
                     break;
                 case ADD:
-                    add(key, 0, value);
+                    add(key, value);
                     break;
                 case REPLACE:
-                    replace(key, 0, value);
+                    replace(key, value);
                     break;
                 case DELETE:
                     delete(key);
@@ -111,12 +112,12 @@ public class MyCacheController
         return o;
     }
 
-    public Boolean set(String key, int ttl, final Object o) throws InterruptedException, ExecutionException
+    public Boolean set(String key, int timeToLive, final Object o) throws InterruptedException, ExecutionException
     {
-        MyCacheController.logMessage("Command = SET, Key Argument = " + key + ", Index = " + ttl + ", Value Argument = " + o);
-        //Future<Boolean> result = getMemCachedClient().set(getNamespaceKey(key), ttl, o);
+        MyCacheController.logMessage("Command = SET, Key Argument = " + key + ", TimeToLive = " + timeToLive + ", Value Argument = " + o);
+        //Future<Boolean> result = getMemCachedClient().set(getNamespaceKey(key), timeToLive, o);
         Opportunity opp1 = new Opportunity("MyOpp1", 1.234);
-	Future<Boolean> result = getMemCachedClient().set(getNamespaceKey(key), ttl, opp1);
+	Future<Boolean> result = getMemCachedClient().set(getNamespaceKey(key), timeToLive, opp1);
         Boolean success = result.get();
         MyCacheController.logMessage("Result of SET Command[" + success + "]");
         return success;
@@ -124,13 +125,13 @@ public class MyCacheController
 
     public Boolean set(String key, final Object o) throws InterruptedException, ExecutionException
     {
-        return this.set(key, 0, o);
+        return this.set(key, DEFAULT_TIME_TO_LIVE, o);
     }
 
-    public Boolean add(final String key, final int ttl, final Object o) throws InterruptedException, ExecutionException
+    public Boolean add(final String key, final int timeToLive, final Object o) throws InterruptedException, ExecutionException
     {
-        MyCacheController.logMessage("Command = ADD, Key Argument = " + key + ", Index = " + ttl + ", Value Argument = " + o);
-        Future<Boolean> result = getMemCachedClient().add(getNamespaceKey(key), ttl, o);
+        MyCacheController.logMessage("Command = ADD, Key Argument = " + key + ", TimeToLive = " + timeToLive + ", Value Argument = " + o);
+        Future<Boolean> result = getMemCachedClient().add(getNamespaceKey(key), timeToLive, o);
         Boolean success = result.get();
         MyCacheController.logMessage("Result of ADD Command[" + success + "]");
         return success;
@@ -138,14 +139,14 @@ public class MyCacheController
 
     public Boolean add(final String key, final Object o) throws InterruptedException, ExecutionException
     {
-        return this.add(key, 0, o);
+        return this.add(key, DEFAULT_TIME_TO_LIVE, o);
     }
 
 
-    public Boolean replace(final String key, final int ttl, final Object o) throws InterruptedException, ExecutionException
+    public Boolean replace(final String key, final int timeToLive, final Object o) throws InterruptedException, ExecutionException
     {
-        MyCacheController.logMessage("Command = REPLACE, Key Argument = " + key + ", Index = " + ttl + ", Value Argument = " + o);
-        Future<Boolean> result = getMemCachedClient().replace(getNamespaceKey(key), ttl, o);
+        MyCacheController.logMessage("Command = REPLACE, Key Argument = " + key + ", TimeToLive = " + timeToLive + ", Value Argument = " + o);
+        Future<Boolean> result = getMemCachedClient().replace(getNamespaceKey(key), timeToLive, o);
         Boolean success = result.get();
         MyCacheController.logMessage("Result of REPLACE Command[" + success + "]");
         return success;
@@ -153,7 +154,7 @@ public class MyCacheController
 
     public Boolean replace(final String key, final Object o) throws InterruptedException, ExecutionException
     {
-        return this.replace(key, 0, o);
+        return this.replace(key, DEFAULT_TIME_TO_LIVE, o);
     }
 
     public Boolean delete(String key) throws InterruptedException, ExecutionException
