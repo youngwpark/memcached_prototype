@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+                   Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="prototype">
+
+    <property name="my.project.name" value="My Prototype MemCache"/>
+    <property name="build.classes.dir" value="build/classes"/>
+    <property name="build.jars.dir" value="build/jars"/>
+    <property name="project.jar.name" value="prototype.jar"/>
+    <property name="external.memcached.client.jars" value="lib"/>
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="prototype.classpath">
+        <pathelement location="build"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="build"/>
+        <copy includeemptydirs="false" todir="build">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="fresh" depends="clean,build"/>
+
+    <target name="clean">
+        <echo message="Cleaning ${my.project.name}"/>
+        <delete dir="build"/>
+    </target>
+
+    <target name="copy-jars">
+        <echo message="Copying external jars to local project"/>
+        <mkdir dir="${build.jars.dir}"/>
+        <copy todir="${build.jars.dir}">
+            <fileset dir="${external.memcached.client.jars}">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy> 
+    </target>
+
+    <target name="build" depends="copy-jars,build-project,jar"/>
+
+    <target name="build-project" depends="init">
+        <echo message="Start Building ${my.project.name}: ${ant.file}"/>
+        <echo message="My build class directory: ${build.classes.dir}"/>
+	<mkdir dir="${build.classes.dir}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="${build.classes.dir}" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="prototype.classpath"/>
+            <classpath>
+                <pathelement path="${build.jars.dir}/spymemcached-2.11.4.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="jar">
+        <echo message="Start generating the ${project.jar.name}"/>
+        <mkdir dir="${build.jars.dir}"/>
+        <jar destfile="${build.jars.dir}/${project.jar.name}" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="prototype.MemCached"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/prototype.jar" fork="true"/>
+    </target>
+
+</project>
