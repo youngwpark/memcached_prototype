@@ -32,7 +32,7 @@ public MyCacheService(){}
 		// Create Controller
 		MyCacheController cacheController = new MyCacheController(cache);
 	
-	    OppGenerator oppGenerator = new OppGenerator(cacheController, threadCountArgument);
+	    OppGenerator oppGenerator = new OppGenerator(cacheController, Integer.parseInt(threadCountArgument));
 	    
 	    //cache.shutdown();
     }
