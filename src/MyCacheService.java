@@ -11,12 +11,6 @@ public MyCacheService(){}
 
     public static void main(String[] args) throws Exception
     {
-        if(args.length < 2)
-		{
-        	System.out.println("Please specify command line options");
-	        return;
-        }
-
         System.out.println("Starting to establish MemcachedClient Connection");
         String threadCountArgument = null;
         int numberOfArguments = args.length;
