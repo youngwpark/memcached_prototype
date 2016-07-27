@@ -11,22 +11,23 @@ public class Opportunity implements Serializable
 
     public Opportunity(final String name, final double rank)
     {
-	this.name = name;
-	this.rank = rank;
+    	this.name = name;
+		this.rank = rank;
     }
 
     public String getName()
     {
-	return name;
+    	return name;
     }
 
     public double getRank()
     {
-	return rank;
+    	return rank;
     }
 
+    @Override
     public String toString()
     {
-	return "Name[" + name + "], Rank[" + rank + "]";
+    	return "Name[" + name + "], Rank[" + rank + "]";
     }
 }
