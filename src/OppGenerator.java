@@ -43,7 +43,7 @@ public class OppGenerator
 						MyCacheController.logMessage("Adding Opportunity with key[" + key + "], name[" + name + "], rank[" + rank + "] to MemCached.");
 						try 
 						{
-							cacheController.set(key, opp);
+							cacheController.add(key, opp);
 						} 
 						catch (ExecutionException e) 
 						{
