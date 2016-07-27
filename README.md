@@ -15,7 +15,9 @@ Logging into the AWS EC2 instance running the MemCache daemon:
 	$ ./runMyCache.sh "add" "apple" "The apple is red."
 6) To run a process to add 10 "Opportunity" object to MemCached:
 	$ ./runMyCacheService.sh 10
-	NOTE: This will call the OppGenerator to run a thread to add 10 Opportunity objects to the MemCache. The thread is configured to sleep 1 second between each iteration.
+	NOTE: 
+	  - This will call the OppGenerator to run a thread to add 10 Opportunity objects to the MemCache. 
+	  - The thread is configured to sleep 1 second between each iteration.
 7) After steps #5 or #6, try dumping all the keys:
 	$ memdump --servers=localhost
 8) To bounce the MemCached daemon:
