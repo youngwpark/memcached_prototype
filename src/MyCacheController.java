@@ -42,7 +42,7 @@ public class MyCacheController
         return cache.getNamespaceKey(key);
     }
 
-    private static void logMessage(final String message)
+    protected static void logMessage(final String message)
     {
         if (MyCacheController.isLoggerEnabled)
         {

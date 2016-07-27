@@ -28,6 +28,8 @@ public class OppGenerator
 			@Override
 			public void run() 
 			{
+		        MyCacheController.logMessage("Starting the OppGenerator thread.");
+
 				// TODO Auto-generated method stub
 				while (threadCounter < threadCountLimit)
 				{
@@ -38,20 +40,25 @@ public class OppGenerator
 						String name = "" + "_Counter" + threadCounter;
 						double rank = 0.123 + threadCounter;
 						final Opportunity opp = new Opportunity(name, rank);
+						MyCacheController.logMessage("Adding Opportunity with key[" + key + "], name[" + name + "], rank[" + rank + "] to MemCached.");
 						try 
 						{
 							cacheController.set(key, opp);
 						} 
 						catch (ExecutionException e) 
 						{
-							System.out.println("ExecurtionException occurred while trying to save Opportunity with name[" + name + "], rank[" + rank + "]");
+							MyCacheController.logMessage("ExecutionException occurred while trying to save Opportunity with name[" + name + "], rank[" + rank + "]");
 							e.printStackTrace();
+							return;
 						}
+						MyCacheController.logMessage("Thread sleeping for " + timerInterval + " seconds");
 						Thread.sleep(timerInterval * 1000);
 					}
 					catch (InterruptedException ex)
 					{
 						ex.printStackTrace();
+						
+						return;
 					}
 					threadCounter++;
 				}
