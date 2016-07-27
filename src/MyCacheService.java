@@ -11,13 +11,28 @@ public MyCacheService(){}
 
     public static void main(String[] args) throws Exception
     {
+        if(args.length < 2)
+		{
+        	System.out.println("Please specify command line options");
+	        return;
+        }
+
+        System.out.println("Starting to establish MemcachedClient Connection");
+        String threadCountArgument = null;
+        int numberOfArguments = args.length;
+        if (numberOfArguments > 0)
+        {
+        	threadCountArgument = args[numberOfArguments - numberOfArguments];
+            System.out.println("ThreadCount[" + threadCountArgument + "]");
+        }
+        
 	 	// Create Model 
         MyCache cache = new MyCache();
 	
 		// Create Controller
 		MyCacheController cacheController = new MyCacheController(cache);
 	
-	    OppGenerator oppGenerator = new OppGenerator(cacheController);
+	    OppGenerator oppGenerator = new OppGenerator(cacheController, threadCountArgument);
 	    
 	    //cache.shutdown();
     }

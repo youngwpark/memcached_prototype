@@ -5,7 +5,8 @@ import java.lang.Runnable;
 
 public class OppGenerator 
 {
-	private int counter = 0;
+	private int threadCountLimit = 0;
+	private int threadCounter = 0;
 	private int timerInterval = 1;	// 1 second sleep
 	private MyCacheController cacheController;
 	
@@ -14,9 +15,10 @@ public class OppGenerator
 		
 	}
 	
-	public OppGenerator(final MyCacheController cacheController)
+	public OppGenerator(final MyCacheController cacheController, final int threadCountLimit)
 	{
 		this.cacheController = cacheController;
+		this.threadCountLimit = threadCountLimit;
 	}
 	
 	public void generateOppDataSet()
@@ -27,14 +29,14 @@ public class OppGenerator
 			public void run() 
 			{
 				// TODO Auto-generated method stub
-				while (counter < 100)
+				while (threadCounter < threadCountLimit)
 				{
 					try
 					{
 						// Generate a new opportunity
-						String key = "" + "_Counter" + counter;
-						String name = "" + "_Counter" + counter;
-						double rank = 0.123 + counter;
+						String key = "" + "_Counter" + threadCounter;
+						String name = "" + "_Counter" + threadCounter;
+						double rank = 0.123 + threadCounter;
 						final Opportunity opp = new Opportunity(name, rank);
 						try 
 						{
@@ -51,7 +53,7 @@ public class OppGenerator
 					{
 						ex.printStackTrace();
 					}
-					counter++;
+					threadCounter++;
 				}
 			}
 		});
