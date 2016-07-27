@@ -1,5 +1,8 @@
 # memcache_prototype
-
+Logging into the AWS EC2 instance running the MemCache daemon:
+	$ ssh -i my-ec2-key-pair.pem ec2-user@52.35.88.21
+	
+	
 1) Get a checkout of "memcached_prototype":
 	$ git clone https://github.com/youngwpark/memcached_prototype.git
 2) To get the latest changes:
@@ -17,5 +20,3 @@
 	$ memdump --servers=localhost
 8) To bounce the MemCached daemon:
 	$ sudo service memcached restart
-9) Logging into the AWS EC2 instance running the MemCache daemon:
-	$ ssh -i my-ec2-key-pair.pem ec2-user@52.35.88.21
