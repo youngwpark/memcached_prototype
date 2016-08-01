@@ -40,7 +40,7 @@ public class DevOps extends Job implements Serializable
 	
 	public String toString()
 	{
-		return super.toString() + ", JobField[" + getField() + "]";
+		return super.toString() + ", JobField[" + getField() + "], ReqSkills[" + requiredSkills.toString() + "]";
 	}
 	
 	
