@@ -37,11 +37,4 @@ public class DevOps extends Job implements Serializable
 		return JobFieldEnum.ENGINEERING;
 	}
 	
-	
-	public String toString()
-	{
-		return super.toString() + ", JobField[" + getField() + "], ReqSkills[" + requiredSkills.toString() + "]";
-	}
-	
-	
 }

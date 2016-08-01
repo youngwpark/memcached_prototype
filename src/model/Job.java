@@ -71,6 +71,10 @@ public abstract class Job implements JobIF, Serializable
 		str.append("Company[" + company + "]");
 		str.append(", ");
 		str.append("ExperienceLevel[" + experienceLevel + "]");
+		str.append(", ");
+		str.append("JobField[" + getField() + "]");
+		str.append(", ");
+		str.append("ReqSkills[" + getRequiredSkills().toString() + "]");
 		return str.toString();
 	}
 }
