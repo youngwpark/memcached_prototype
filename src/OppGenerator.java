@@ -84,7 +84,7 @@ public class OppGenerator
 									break;
 							}
 							final String key = "Thread" + threadCounter + "_Type" + job.getExperienceLevel().toString();
-							opp = new Opportunity(id, key, rank, job);
+							opp = new Opportunity((id+i), (key+i), rank, job);
 							MyCacheController.logMessage("Adding Opportunity with key[" + key + "], id[" + id + "], rank[" + rank + "], opp[" + opp.toString() + "] to MemCached.");
 							try 
 							{

@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
  
 public class MyCache 
 {
-    private static final String NAMESPACE= "MyPrototypeCache:5d41402abc4b2a76b9719d91101";
+    private static final String NAMESPACE= "MyPrototypeCache_123";
     private static MyCache instance = null;
     private static MemcachedClient memCachedClient = null;
 
