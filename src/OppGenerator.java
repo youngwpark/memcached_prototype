@@ -2,6 +2,7 @@ import java.lang.InterruptedException;
 import java.lang.Thread;
 import java.util.concurrent.ExecutionException;
 
+import model.DevOps;
 import model.Job;
 import model.Opportunity;
 import model.SoftwareEngineer;
@@ -40,7 +41,7 @@ public class OppGenerator
 				CompanyEnum.BITS, 
 				ExperienceLevelEnum.ENTRY_LEVEL);
 		
-		final Job softwareEngineerJob_mid = new SoftwareEngineer("MidLevel Programmer", 
+		final Job devOpsEngineerJob_mid = new DevOps("MidLevel Dev Operations", 
 				JobTypeEnum.FULL_TIME, 
 				LocationEnum.SEATTLE, 
 				CompanyEnum.AMAZON, 
@@ -74,7 +75,7 @@ public class OppGenerator
 									job = softwareEngineerJob_entry;
 									break;
 								case 2:
-									job = softwareEngineerJob_mid;
+									job = devOpsEngineerJob_mid;
 									break;
 								case 3:
 									job = softwareEngineerJob_senior;
