@@ -16,6 +16,7 @@ public class OppGenerator
 {
 	private int threadCountLimit = 0;
 	private int threadCounter = 0;
+	private int idCounter = 0;
 	private int timerInterval = 1;	// 1 second sleep
 	private MyCacheController cacheController;
 	
@@ -81,8 +82,8 @@ public class OppGenerator
 								default:
 									break;
 							}
-							long id = threadCounter + i;
-							double rank = 0.123 + threadCounter + i;
+							long id = idCounter++;
+							double rank = 0.123 + threadCounter;
 							
 							final String key = "Thread" + threadCounter + "_Type" + job.getExperienceLevel().toString();
 							opp = new Opportunity(id, key, rank, job);
