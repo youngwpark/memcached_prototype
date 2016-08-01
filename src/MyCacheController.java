@@ -4,6 +4,9 @@ import net.spy.memcached.MemcachedClient;
 import java.io.IOException;
 import java.lang.InterruptedException;
 import java.util.concurrent.Future;
+
+import model.Opportunity;
+
 import java.util.concurrent.ExecutionException;
 import java.util.List;
 import java.util.ArrayList;
@@ -115,9 +118,9 @@ public class MyCacheController
     public Boolean set(String key, int timeToLive, final Object o) throws InterruptedException, ExecutionException
     {
         MyCacheController.logMessage("Command = SET, Key Argument = " + key + ", TimeToLive = " + timeToLive + ", Value Argument = " + o);
-        //Future<Boolean> result = getMemCachedClient().set(getNamespaceKey(key), timeToLive, o);
-        Opportunity opp1 = new Opportunity("MyOpp1", 1.234);
-	Future<Boolean> result = getMemCachedClient().set(getNamespaceKey(key), timeToLive, opp1);
+        Future<Boolean> result = getMemCachedClient().set(getNamespaceKey(key), timeToLive, o);
+//        Opportunity opp1 = new Opportunity("MyOpp1", 1.234);
+//        Future<Boolean> result = getMemCachedClient().set(getNamespaceKey(key), timeToLive, opp1);
         Boolean success = result.get();
         MyCacheController.logMessage("Result of SET Command[" + success + "]");
         return success;
