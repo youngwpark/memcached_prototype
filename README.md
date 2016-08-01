@@ -57,7 +57,7 @@ Run your own MemCached on your own environment:
 6) To add/set/get/replace/delete records in MemCached:
 	$ ./runMyCache.sh "add" "apple" "The apple is red."
 	$ memdump --servers=localhost		// This should return a record for "apple"
-6) To run a process to add 10 "Opportunity" objects to MemCached:
+7) To run a process to add 10 "Opportunity" objects to MemCached:
 	$ ./runMyCacheService.sh 10
 	NOTE: 
 	  - Description: This script will run 10 threads to create Opportunity objects for the following jobs:
@@ -66,15 +66,15 @@ Run your own MemCached on your own environment:
 	  		- Senior Level Software Engineer
 	  - This will result in 30 Opportunity objects to be stored in MemCached
 	  - The thread is configured to sleep 1 second between each iteration.
-7) Dump all the keys stored in MemCached:
+8) Dump all the keys stored in MemCached:
 	$ memdump --servers=localhost		// This should return about 30 records 
-8) How to query for a single record:
+9) How to query for a single record:
 	$ memdump --servers=localhost
 		- This command lists all the keys stored in MemCached. Pick one to input into the next command.
 	$ ./runMyCache.sh "get" "MyPrototypeCache_123Thread2_TypeMID_LEVEL"
 		- This should do a "toString()" on the object correpsonding to the key "MyPrototypeCache_123Thread2_TypeMID_LEVEL"
 		- Usage: runMyCache.sh "<command>" "<key_value>"
-8) To bounce the MemCached daemon:
+10) To bounce the MemCached daemon:
 	$ sudo service memcached restart
 
 	
