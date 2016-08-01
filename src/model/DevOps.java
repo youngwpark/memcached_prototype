@@ -36,5 +36,4 @@ public class DevOps extends Job implements Serializable
 	{
 		return JobFieldEnum.ENGINEERING;
 	}
-	
 }

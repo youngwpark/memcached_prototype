@@ -35,9 +35,4 @@ public class SystemsEngineer extends Job implements Serializable
 	{
 		return JobFieldEnum.ENGINEERING;
 	}
-	
-	public String toString()
-	{
-		return super.toString() + ", JobField[" + getField() + "]";
-	}
 }

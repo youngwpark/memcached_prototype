@@ -36,13 +36,5 @@ public class SoftwareEngineer extends Job implements Serializable
 	public JobFieldEnum getField()
 	{
 		return JobFieldEnum.ENGINEERING;
-	}
-	
-	
-	public String toString()
-	{
-		return super.toString() + ", JobField[" + getField() + "]";
-	}
-	
-	
+	}	
 }
