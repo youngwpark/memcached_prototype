@@ -65,7 +65,7 @@ public class OppGenerator
 						// Generate a new opportunity
 						long id = threadCounter;
 						double rank = 0.123 + threadCounter;
-						for (int i=0; i<3; i++)
+						for (int i=1; i<=3; i++)
 						{
 							Opportunity opp = null;
 							Job job = null;
