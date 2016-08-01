@@ -103,7 +103,8 @@ public class MyCacheController
     public Object get(String key)
     {
         MyCacheController.logMessage("Command = GET, Key Argument = " + key);
-        Object o = getMemCachedClient().get(getNamespaceKey(key));
+//        Object o = getMemCachedClient().get(getNamespaceKey(key));
+        Object o = getMemCachedClient().get(key);
         if(o == null)
         {
             MyCacheController.logMessage("Cache MISS for KEY[" + key + "]");

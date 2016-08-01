@@ -1,6 +1,6 @@
 # memcache_prototype
 Logging into the AWS EC2 instance running the MemCache daemon:
-	$ ssh -i my-ec2-key-pair.pem ec2-user@52.35.88.21
+	$ ssh -i my-ec2-key-pair-2.pem ec2-user@52.42.142.52
 	
 	
 1) Get a checkout of "memcached_prototype":
